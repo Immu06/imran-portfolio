@@ -122,7 +122,7 @@ const educationData = [
   },
   {
     id: 2, date: "2018 – 2021", title: "Bachelor of Commerce", short: "B.Com",
-    org: "University of Mumbai", badge: null, color: "#6366f1", accentBg: "#312e81",
+    org: "University of Mumbai", badge: "Completed", color: "#6366f1", accentBg: "#312e81",
     svgPath: "M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z",
     focus: "Business fundamentals with strong analytical and communication skills",
     subjects: ["Accountancy", "Business Economics", "IT in Business", "Management", "Financial Markets"],
