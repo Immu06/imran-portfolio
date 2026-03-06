@@ -13,17 +13,31 @@ const MOBILE_CSS = `
   .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
   .about-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .mobile-profile { display: none; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; }
 
   @media (max-width: 640px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 20px; margin-bottom: 16px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
     .hero-profile-card { display: none !important; }
+
     .hero-tags { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .hero-tag-item { padding: 12px 14px !important; }
+    .hero-tag-icon { width: 32px !important; height: 32px !important; border-radius: 8px !important; }
+    .hero-tag-icon svg { width: 15px !important; height: 15px !important; }
+    .hero-tag-label { font-size: 11px !important; }
+
     .hero-stats { grid-template-columns: repeat(2,1fr); gap: 8px; }
+    .hero-stat-item { padding: 14px 10px !important; }
+
+    .hero-ctas { gap: 8px; }
+    .hero-cta-btn { padding: 10px 16px !important; font-size: 11px !important; flex: 1; min-width: 0; justify-content: center; }
 
     .about-top { grid-template-columns: 1fr; gap: 14px; }
     .about-stats { grid-template-columns: repeat(3,1fr); gap: 8px; }
     .about-two-col { grid-template-columns: 1fr; gap: 14px; }
     .mobile-profile { display: block; }
+
+    .hero-name { font-size: clamp(38px, 12vw, 56px) !important; }
+    .hero-desc { font-size: 14px !important; max-width: 100% !important; }
   }
 `;
 
@@ -329,38 +343,38 @@ function HeroSection() {
             {/* Name */}
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontFamily: "monospace", fontSize: 10, color: "rgba(240,244,249,0.28)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 6 }}>Hello, I'm</div>
-              <div style={{ fontSize: "clamp(34px,6vw,56px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-2px" }}>
-                <span style={{ color: "#f0f4f9" }}>Imran</span><br />
-                <span style={{ WebkitTextStroke: "1.5px #60a5fa", color: "transparent" }}>Ansari</span>
+              <div className="hero-name" style={{ fontSize: "clamp(42px,8vw,56px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-1.5px" }}>
+                <span style={{ color: "#f0f4f9", display: "block" }}>Imran</span>
+                <span style={{ background: "linear-gradient(135deg,#60a5fa,#2563eb)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", display: "block" }}>Ansari</span>
               </div>
             </div>
 
             {/* Typed role */}
-            <div style={{ display: "flex", alignItems: "center", marginBottom: 18, height: 28 }}>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: 16, height: 28 }}>
               <span style={{ fontFamily: "monospace", fontSize: 14, color: "#60a5fa", fontWeight: 700 }}>{typed}</span>
               <span style={{ display: "inline-block", width: 2, height: 18, background: "#60a5fa", marginLeft: 2, opacity: blink ? 1 : 0, borderRadius: 1 }} />
             </div>
 
             {/* Description */}
-            <p style={{ fontSize: 15.5, color: "rgba(240,244,249,0.62)", maxWidth: 490, lineHeight: 1.85, marginBottom: 26 }}>
+            <p className="hero-desc" style={{ fontSize: 15.5, color: "rgba(240,244,249,0.62)", maxWidth: 490, lineHeight: 1.85, marginBottom: 24 }}>
               Building reliable IT systems for 3+ years — from frontline support to architecting{" "}
               <span style={{ color: "#0d9488", fontWeight: 600 }}>Active Directory infrastructure</span>. Now advancing into{" "}
               <span style={{ color: "#6366f1", fontWeight: 600 }}>cloud engineering</span> with AWS.
             </p>
 
             {/* CTAs */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              <a href={CV_URL} target="_blank" rel="noreferrer"
+            <div className="hero-ctas">
+              <a href={CV_URL} target="_blank" rel="noreferrer" className="hero-cta-btn"
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "monospace", fontSize: 12, fontWeight: 700, color: "#060f1a", background: "linear-gradient(135deg,#60a5fa,#2563eb)", borderRadius: 8, padding: "11px 22px", textDecoration: "none", letterSpacing: 0.5, boxShadow: "0 4px 18px rgba(37,99,235,0.4)" }}>
                 <Icon path="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" size={14} strokeWidth={2.5} />
                 Download CV
               </a>
-              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer"
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="hero-cta-btn"
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "monospace", fontSize: 12, fontWeight: 700, color: "#93c5fd", background: "rgba(37,99,235,0.1)", border: "1px solid rgba(37,99,235,0.3)", borderRadius: 8, padding: "11px 22px", textDecoration: "none", letterSpacing: 0.5 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
                 LinkedIn
               </a>
-              <a href="mailto:ia257085@gmail.com"
+              <a href="mailto:ia257085@gmail.com" className="hero-cta-btn"
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "monospace", fontSize: 12, fontWeight: 700, color: "rgba(240,244,249,0.45)", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: "11px 22px", textDecoration: "none", letterSpacing: 0.5 }}>
                 <Icon path="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" size={14} />
                 Email Me
@@ -376,9 +390,11 @@ function HeroSection() {
         {/* Skill tag row */}
         <div className="hero-tags">
           {highlights.map((h, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "15px 18px", background: "#0f1e2e", borderRadius: 12, border: `1px solid ${h.color}25` }}>
-              <IconBox path={h.path} color={h.color} size={38} iconSize={18} />
-              <span style={{ fontFamily: "monospace", fontSize: 12, color: "rgba(240,244,249,0.72)", fontWeight: 700, letterSpacing: 0.3 }}>{h.label}</span>
+            <div key={i} className="hero-tag-item" style={{ display: "flex", alignItems: "center", gap: 14, padding: "15px 18px", background: "#0f1e2e", borderRadius: 12, border: `1px solid ${h.color}25` }}>
+              <div className="hero-tag-icon" style={{ width: 38, height: 38, borderRadius: 10, background: `${h.color}18`, border: `1px solid ${h.color}35`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={h.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={h.path} /></svg>
+              </div>
+              <span className="hero-tag-label" style={{ fontFamily: "monospace", fontSize: 12, color: "rgba(240,244,249,0.72)", fontWeight: 700, letterSpacing: 0.3 }}>{h.label}</span>
             </div>
           ))}
         </div>
@@ -386,7 +402,7 @@ function HeroSection() {
         {/* Stats row */}
         <div className="hero-stats" style={{ marginTop: 10 }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "#0f1e2e", borderRadius: 12, border: `1px solid ${s.color}25`, padding: "18px 14px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+            <div key={i} className="hero-stat-item" style={{ background: "#0f1e2e", borderRadius: 12, border: `1px solid ${s.color}25`, padding: "18px 14px", textAlign: "center", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 2, background: s.color, opacity: 0.5 }} />
               <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
                 <div style={{ width: 30, height: 30, borderRadius: 8, background: `${s.color}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
