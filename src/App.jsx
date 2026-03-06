@@ -9,7 +9,7 @@ const MOBILE_CSS = `
   .hero-profile-card { display: block; }
   .hero-tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px,1fr)); gap: 10px; margin-bottom: 10px; }
   .hero-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
-  .about-top { display: grid; grid-template-columns: 210px 1fr; gap: 16px; align-items: start; }
+  .about-top { display: grid; grid-template-columns: 1fr; gap: 16px; }
   .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
   .about-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .mobile-profile { display: none; }
@@ -476,10 +476,6 @@ export default function Portfolio() {
               </div>
               {/* Profile + Summary row */}
               <div className="about-top">
-                <div className="hero-profile-card">
-                  <ProfileCard avatarSize={80} padding="22px 16px" gap={12} fontSize={{ name: 15, role: 10, info: 11, btn: 11 }} iconBox={24} />
-                </div>
-
                 <div style={{ display: "grid", gap: 14 }}>
                   <DarkCard accent="linear-gradient(90deg,#2563eb,#0d9488)" style={{ padding: "22px 24px" }}>
                     <SectionTag label="Summary" />
