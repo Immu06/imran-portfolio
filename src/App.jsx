@@ -1,5 +1,32 @@
 import { useState, useEffect } from "react";
 
+// ─── RESPONSIVE CSS ──────────────────────────────────────────────────────────
+const MOBILE_CSS = `
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #060f1a; }
+
+  .hero-grid { display: grid; grid-template-columns: 1fr 220px; gap: 28px; align-items: start; margin-bottom: 20px; }
+  .hero-profile-card { display: block; }
+  .hero-tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px,1fr)); gap: 10px; margin-bottom: 10px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+  .about-top { display: grid; grid-template-columns: 210px 1fr; gap: 16px; align-items: start; }
+  .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .about-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mobile-profile { display: none; }
+
+  @media (max-width: 640px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 20px; margin-bottom: 16px; }
+    .hero-profile-card { display: none !important; }
+    .hero-tags { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .hero-stats { grid-template-columns: repeat(2,1fr); gap: 8px; }
+
+    .about-top { grid-template-columns: 1fr; gap: 14px; }
+    .about-stats { grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .about-two-col { grid-template-columns: 1fr; gap: 14px; }
+    .mobile-profile { display: block; }
+  }
+`;
+
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
 const skillsData = [
@@ -289,9 +316,9 @@ function HeroSection() {
         <span style={{ fontFamily: "monospace", fontSize: 10, color: "rgba(240,244,249,0.28)", letterSpacing: 1 }}>{time}</span>
       </div>
 
-      <div style={{ position: "relative", zIndex: 2, maxWidth: 860, margin: "0 auto", padding: "36px 24px 40px" }}>
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 860, margin: "0 auto", padding: "clamp(20px,5vw,36px) clamp(16px,4vw,24px) 40px" }}>
         {/* Two-column: content + profile card */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 220px", gap: 28, alignItems: "start", marginBottom: 20 }}>
+        <div className="hero-grid">
           <div>
             {/* Badge */}
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: 20, padding: "5px 14px", marginBottom: 20 }}>
@@ -341,11 +368,13 @@ function HeroSection() {
             </div>
           </div>
 
-          <ProfileCard />
+          <div className="hero-profile-card">
+            <ProfileCard />
+          </div>
         </div>
 
         {/* Skill tag row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(185px,1fr))", gap: 10, marginBottom: 10 }}>
+        <div className="hero-tags">
           {highlights.map((h, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "15px 18px", background: "#0f1e2e", borderRadius: 12, border: `1px solid ${h.color}25` }}>
               <IconBox path={h.path} color={h.color} size={38} iconSize={18} />
@@ -355,7 +384,7 @@ function HeroSection() {
         </div>
 
         {/* Stats row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
+        <div className="hero-stats" style={{ marginTop: 10 }}>
           {stats.map((s, i) => (
             <div key={i} style={{ background: "#0f1e2e", borderRadius: 12, border: `1px solid ${s.color}25`, padding: "18px 14px", textAlign: "center", position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 2, background: s.color, opacity: 0.5 }} />
@@ -396,17 +425,19 @@ export default function Portfolio() {
     { id: "goals",      label: "Goals"      },
   ];
 
-  // Kill browser default body margin/background
+  // Inject responsive CSS + reset body styles
   useEffect(() => {
+    const style = document.createElement("style");
+    style.id = "portfolio-responsive";
+    style.textContent = MOBILE_CSS;
+    document.head.appendChild(style);
     document.body.style.margin = "0";
     document.body.style.padding = "0";
     document.body.style.background = "#060f1a";
     document.documentElement.style.background = "#060f1a";
-    document.documentElement.style.margin = "0";
-    document.documentElement.style.padding = "0";
     return () => {
+      document.getElementById("portfolio-responsive")?.remove();
       document.body.style.margin = "";
-      document.body.style.padding = "";
       document.body.style.background = "";
       document.documentElement.style.background = "";
     };
@@ -433,14 +464,21 @@ export default function Portfolio() {
 
       {/* ── CONTENT ── */}
       <div style={{ minHeight: "calc(100vh - 200px)" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto", padding: "32px 20px 80px" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto", padding: "clamp(16px,4vw,32px) clamp(12px,4vw,20px) 80px" }}>
 
           {/* ══ ABOUT ══ */}
           {tab === "about" && (
             <div style={{ display: "grid", gap: 20 }}>
+
+              {/* Mobile-only profile card (hero card hidden on mobile) */}
+              <div className="mobile-profile">
+                <ProfileCard avatarSize={80} padding="22px 20px" gap={12} fontSize={{ name: 15, role: 10, info: 12, btn: 11 }} iconBox={26} />
+              </div>
               {/* Profile + Summary row */}
-              <div style={{ display: "grid", gridTemplateColumns: "210px 1fr", gap: 16, alignItems: "start" }}>
-                <ProfileCard avatarSize={80} padding="22px 16px" gap={12} fontSize={{ name: 15, role: 10, info: 11, btn: 11 }} iconBox={24} />
+              <div className="about-top">
+                <div className="hero-profile-card">
+                  <ProfileCard avatarSize={80} padding="22px 16px" gap={12} fontSize={{ name: 15, role: 10, info: 11, btn: 11 }} iconBox={24} />
+                </div>
 
                 <div style={{ display: "grid", gap: 14 }}>
                   <DarkCard accent="linear-gradient(90deg,#2563eb,#0d9488)" style={{ padding: "22px 24px" }}>
@@ -450,7 +488,7 @@ export default function Portfolio() {
                     </p>
                   </DarkCard>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
+                  <div className="about-stats">
                     {[
                       { n: "3+", l: "Yrs Experience", color: "#2563eb", path: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
                       { n: "100+", l: "Users Supported", color: "#0d9488", path: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" },
@@ -491,7 +529,7 @@ export default function Portfolio() {
               </DarkCard>
 
               {/* Soft skills + Contact row */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="about-two-col">
                 <DarkCard accent="linear-gradient(90deg,#d97706,#dc2626)" style={{ padding: "22px 24px" }}>
                   <SectionTag label="Soft Skills" color="#fbbf24" />
                   <div style={{ display: "grid", gap: 11 }}>
