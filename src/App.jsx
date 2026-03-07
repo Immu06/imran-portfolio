@@ -52,7 +52,7 @@ const skillsData = [
   { id: 6,  name: "Ticketing Systems",      level: 85 },
   { id: 7,  name: "Hardware Troubleshoot",  level: 88 },
   { id: 8,  name: "Endpoint Security",      level: 72 },
-  { id: 9,  name: "AWS Solutions Arch.",    level: 45 },
+  { id: 9,  name: "AWS Solutions Arch.",    level: 68 },
   { id: 10, name: "TCP/IP Networking",      level: 70 },
   { id: 11, name: "System Maintenance",     level: 80 },
   { id: 12, name: "Customer Support",       level: 88 },
@@ -110,6 +110,24 @@ const projectsData = [
     desc: "Designed and deployed a full Active Directory environment from scratch. Structured OUs to reflect department hierarchy, provisioned user accounts, assigned role-based permissions and group policies, and enforced access controls for secure resource access.",
     tags: ["Active Directory", "Windows Server", "OU Design", "Group Policy", "RBAC", "Access Control"],
   },
+  {
+    id: 2,
+    svgPath: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z",
+    color: "#f59e0b",
+    title: "AWS Cloud Architecture — React & Python App",
+    org: "Academic Project · MCA · 2025",
+    desc: "Architected a production-grade, multi-tier AWS solution for a start-up's React frontend and Python API backend. Designed a custom VPC with public/private subnets to isolate the database from the internet, configured Elastic Beanstalk with a full CI/CD pipeline (CodeCommit → CodePipeline → CodeBuild), and set up an Auto Scaling Group (min 2 / max 4 EC2 instances) behind an Application Load Balancer for high availability. Built a real-time log analytics pipeline using CloudWatch, Kinesis Data Streams, Firehose, S3, Athena, and QuickSight. Deployed CloudFront CDN for global low-latency access and secured S3 image storage via Origin Access Control. Infrastructure provisioned entirely through AWS CloudFormation.",
+    tags: ["AWS VPC", "Elastic Beanstalk", "CloudFormation", "Auto Scaling", "ALB", "RDS Multi-AZ", "CloudFront", "S3", "Kinesis", "CodePipeline", "CloudWatch", "QuickSight"],
+  },
+  {
+    id: 3,
+    svgPath: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2",
+    color: "#6366f1",
+    title: "AWS Multi-Tier Infrastructure — PHP Dynamic Website",
+    org: "Academic Project · MCA · 2025",
+    desc: "Designed a secure, scalable AWS environment for a PHP dynamic website, focusing on managed PaaS services to eliminate the need for a dedicated database or monitoring engineer. Built an isolated VPC with public/private subnets and a DB Subnet Group to house an Amazon RDS MySQL Multi-AZ instance — fully managed by AWS for patching, backups, and automatic failover. Configured an Auto Scaling Group (min 2 / max 4 EC2 instances) with CloudWatch alarms and Amazon SNS to send automated email notifications on every scale-in/out event. Deployed an Application Load Balancer across two Availability Zones for automatic failover, and fronted the application with Amazon CloudFront for global caching. Disaster recovery implemented via AWS Backup (EC2 AMIs) and RDS automated snapshots.",
+    tags: ["AWS VPC", "Amazon RDS", "RDS Multi-AZ", "Auto Scaling", "ALB", "CloudFront", "SNS", "CloudWatch", "AWS Backup", "EC2", "PHP", "Disaster Recovery"],
+  },
 ];
 
 const educationData = [
@@ -134,7 +152,7 @@ const certsData = [
     id: 1, name: "AWS Solutions Architect", detail: "Training Program", issuer: "Edureka", year: "2024",
     color: "#d97706", status: "Trained",
     svgPath: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z",
-    skills: ["EC2", "S3", "IAM", "VPC", "Cloud Architecture"],
+    skills: ["EC2", "S3", "IAM", "VPC", "RDS", "CloudFront", "Auto Scaling", "CloudFormation", "Kinesis", "SNS"],
     nextStep: "Targeting AWS SAA Exam",
   },
   {
@@ -170,7 +188,7 @@ const toolsData = [
     tools: [{ name: "PowerShell", level: 55 }, { name: "Batch Scripts", level: 65 }, { name: "Task Scheduler", level: 75 }] },
   { category: "Cloud", color: "#6366f1", bg: "#312e81",
     svgPath: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z",
-    tools: [{ name: "AWS EC2 / S3", level: 45 }, { name: "AWS IAM", level: 50 }, { name: "Azure basics", level: 40 }] },
+    tools: [{ name: "AWS VPC / Subnets", level: 70 }, { name: "AWS EC2 / Auto Scaling", level: 68 }, { name: "AWS RDS / S3", level: 65 }, { name: "CloudFront / ALB", level: 63 }, { name: "CloudFormation", level: 60 }, { name: "Azure basics", level: 40 }] },
 ];
 
 const goalsInit = [
